@@ -3,11 +3,8 @@
     <div class="row" style="width: 350px;">
         <div>
             <h1 class="text-center">Sign up form</h1>
-            <form action=""  >
-                <mat-form-field appearance="outline" style="width: 100%;">
-                    <mat-label>Enter your name</mat-label>
-                    <input formControlName="username" matInput placeholder="Enter your name">
-                </mat-form-field>
+            <form action="" (ngSubmit)="OnSubmit()"  [formGroup]="loginUserForm" >
+               
                 <mat-form-field appearance="outline" style="width: 100%;">
                     <mat-label>Enter your email</mat-label>
                     <input type="mail" formControlName="email" matInput placeholder="Enter your email">
@@ -16,15 +13,11 @@
                     <mat-label>Enter Password</mat-label>
                     <input type="password" formControlName="password"  matInput placeholder="Enter Password">
                 </mat-form-field>
-                <mat-form-field appearance="outline" style="width: 100%;">
-                    <mat-label>Confirm Password</mat-label>
-                    <input type="password" #confirmPassword matInput placeholder="Confirm Password">
-                </mat-form-field>
                 <div class="save">
-                    <button mat-raised-button color="primary" type="submit" style="width: 100%;">Submit</button>
+                    <button mat-raised-button  color="primary" type="submit"  style="width: 100%;">Login</button>
                 </div>
                 <div class="text-center mt-2">
-                    <p>Don't have an account? <a routerLink="signup">Sign up</a></p>
+                    <p>Don't have an account? <a routerLink= "/signup">Sign up</a></p>
                 </div>
             </form>
         </div>
