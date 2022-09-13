@@ -10,8 +10,8 @@ export class ApicallService {
 
    }
 
-   login(userData: any){
-    return this.http.post('http://localhost:3000/auth/login',userData)
+   login(userData){
+    return this.http.post('http://localhost:3000/auth/login', userData)
    }
 
 
@@ -20,11 +20,11 @@ export class ApicallService {
    }
 
    
-   gotoDashboard(token: any){
+   gotoDashboard(token){
     const headers = new HttpHeaders({
       'Content-Type':'application/json',
       'Authorization':`Bearer ${token}`
     })
-    return this.http.post('http://localhost:3000/auth/register',{headers:headers})
+    return this.http.post('http://localhost:3000/auth/dashboard',{headers:headers})
    }
 }

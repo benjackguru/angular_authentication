@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ApicallService } from 'src/app/shared/apicall.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +11,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   loginUserForm: FormGroup;
 
-  constructor() {
+  constructor( public apicallService:ApicallService, public router:Router) {
     this.loginUserForm = new FormGroup({
       email: new FormControl('', [Validators.email, Validators.required]),
       password: new FormControl('', [Validators.required])
@@ -22,6 +24,14 @@ export class LoginComponent implements OnInit {
   }
 
   OnSubmit(){
+    if(this.loginUserForm.valid){
+      this.apicallService.login(this.loginUserForm.value).subscribe( res=>{
+        if(res && res['status']==='ok' && res['data']['response'] && res['data']['authToke']){
+          localStorage.setItem('token', res['data']['authToken'])
+          this.router.navigate(['/dashboard'])
+        }
+      })
+    }
     console.log(this.loginUserForm.value);
   }
 
