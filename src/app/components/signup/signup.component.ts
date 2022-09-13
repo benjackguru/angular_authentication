@@ -33,6 +33,10 @@ export class SignupComponent implements OnInit {
       if(res && res['status'] ==='ok' && res['data']['_id']){
         this.router.navigate(['/login'])
       }
+    },(err)=>{
+      if(err) {
+        console.log('something went wrong in signup')
+      }
     })
   }
 
