@@ -28,11 +28,13 @@ export class LoginComponent implements OnInit {
       this.apicallService.login(this.loginUserForm.value).subscribe( res=>{
         if(res && res['status']==='ok' && res['data']['response'] && res['data']['authToke']){
           localStorage.setItem('token', res['data']['authToken'])
-          this.router.navigate(['/dashboard'])
-        }
+          this.router.navigate(['/dashboard']);
+                }
       },(err)=>{
         console.log('we got an error in login')
       })
+    }(err)=>{
+      console.log('we got an error in login')
     }
     console.log(this.loginUserForm.value);
   }
